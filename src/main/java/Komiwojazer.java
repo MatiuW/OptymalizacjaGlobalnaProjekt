@@ -1,5 +1,6 @@
 import model.Travel;
 import model.Travels;
+import model.Paths;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -7,6 +8,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.util.List;
+
+import java.util.Random;
 
 public class Komiwojazer {
 
@@ -17,14 +20,16 @@ public class Komiwojazer {
         SAXParser saxParser = factory.newSAXParser();
         XmlReader xmlReader = new XmlReader();
 
-        //test
         saxParser.parse(PATH, xmlReader);
         Travels result = xmlReader.getWebsite();
         List<Travel> travels = result.getTravelList();
 
-        for(int i = 0; i < travels.size(); i++) {
-            System.out.println("====================================================================");
-            System.out.println("miasto pierwsze: " + travels.get(i).getCityfirst() + ", miasto drugie: " + travels.get(i).getCitysecond() + ", odleglosc: " + travels.get(i).getLength());
-        }
+        // Wygenerowanie losowych sciezek pomiedzy miastami
+
+        System.out.println("Wygenerowane losowe sciezki pomiedzy miastami: 123");
+        System.out.println();
+
+        Paths paths = new Paths(3, travels);
+        paths.write_out();
     }
 }
