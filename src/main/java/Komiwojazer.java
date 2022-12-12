@@ -26,7 +26,7 @@ public class Komiwojazer {
 
         // Wygenerowanie losowych sciezek pomiedzy miastami
 
-        System.out.println("Wygenerowane losowe sciezki pomiedzy miastami: 123");
+        System.out.println("Wygenerowane losowe sciezki pomiedzy miastami: ");
         System.out.println();
 
         Paths paths = new Paths(3, travels);
