@@ -42,7 +42,7 @@ public class Komiwojazer {
         //redukcja - wybieranie 5 losowych sciezek
         ArrayList<String> combinations = new ArrayList<>();
         Random random = new Random();
-        for(int i = 0; i < 2; i++) {
+        for(int i = 0; i < 10; i++) {
             int r = random.nextInt(paths.size());
             combinations.add(paths.get(r));
         }
