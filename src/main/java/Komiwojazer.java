@@ -75,7 +75,7 @@ public class Komiwojazer {
                     last = s[j];
 
                 } else if(!last.equals(first)){
-                    path.append(last + " " + s[Integer.parseInt(last) ] + " ");
+                    path.append( s[Integer.parseInt(last) ] + " ");
                     last = s[Integer.parseInt(last) ];
                 }
 
@@ -100,11 +100,16 @@ public class Komiwojazer {
 //                System.out.println(spl[i] + " " + spl[i+1]);
 //            }
 
-            for(int i = 0; i < spl.length-1; i+=2) {
-                System.out.println(spl[i] + " " + spl[i+1]);
-                System.out.println(nameOFCities.get(Integer.parseInt(spl[i])) + " " + nameOFCities.get(Integer.parseInt(spl[i+1])));
+//            for(int i = 0; i < spl.length-1; i+=2) {
+//                System.out.println(spl[i] + " " + spl[i+1]);
+//                System.out.println(nameOFCities.get(Integer.parseInt(spl[i])) + " " + nameOFCities.get(Integer.parseInt(spl[i+1])));
+//            }
+
+            for(int i = 0; i < spl.length; i++) {
+                System.out.print(spl[i] + " - " + nameOFCities.get(Integer.parseInt(spl[i])) + ", ");
             }
 
+            System.out.println();
         }
     }
 
