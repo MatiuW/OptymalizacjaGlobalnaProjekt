@@ -1,8 +1,7 @@
-import model.Test;
-import model.Travel;
-import model.Travels;
-import model.Paths;
+import model.*;
 import org.xml.sax.SAXException;
+import selection.Ranked;
+import selection.Tournament;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -17,6 +16,7 @@ public class Komiwojazer {
 
     private static final String PATH = "length.xml";
     private static final int NUMBER_OF_CITIES = 5;
+    private ArrayList<ExamplePath> examplePaths = new ArrayList<>();
 
     public void start() throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -29,8 +29,8 @@ public class Komiwojazer {
 
         // Wygenerowanie losowych sciezek pomiedzy miastami
 
-        System.out.println("Wygenerowane losowe sciezki pomiedzy miastami: ");
-        System.out.println();
+//        System.out.println("Wygenerowane losowe sciezki pomiedzy miastami: ");
+//        System.out.println();
 
         Test test = new Test();
         ArrayList<String> paths = test.generuj(0);
@@ -47,6 +47,7 @@ public class Komiwojazer {
             combinations.add(paths.get(r));
         }
 
+        System.out.println("Wybrane sciezki");
         for(String p: combinations) {
             System.out.println(p);
         }
@@ -61,7 +62,6 @@ public class Komiwojazer {
         //ukladanie sciezek
         ArrayList<String> citiesPaths = new ArrayList<>();
         StringBuilder path = new StringBuilder();
-        double sum = 0;
 
         for(int i = 0; i < combinations.size(); i++) {
 
@@ -86,31 +86,77 @@ public class Komiwojazer {
             path.setLength(0);
         }
 
-        System.out.println("Miasta:");
+        System.out.println("Wszystkie Miasta:");
         for(String noc: nameOFCities) {
             System.out.print(noc + " ");
         }
         System.out.println();
 
         //wypisanie wynikow
-        for(String cp: citiesPaths) {
-            System.out.println("============= sciezka =============");
-            String[] spl = cp.split(" ");
-//            for(int i = 0; i < spl.length-1; i+=2) {
-//                System.out.println(spl[i] + " " + spl[i+1]);
-//            }
+        double sum = 0;
+        ArrayList<String> examplePathCityFirst = new ArrayList<>();
+        ArrayList<String> examplePathCitySecond = new ArrayList<>();
 
-//            for(int i = 0; i < spl.length-1; i+=2) {
-//                System.out.println(spl[i] + " " + spl[i+1]);
-//                System.out.println(nameOFCities.get(Integer.parseInt(spl[i])) + " " + nameOFCities.get(Integer.parseInt(spl[i+1])));
-//            }
+        for(String cp: citiesPaths) {
+//            System.out.println("============= sciezka =============");
+            String[] spl = cp.split(" ");
+
 
             for(int i = 0; i < spl.length; i++) {
-                System.out.print(spl[i] + " - " + nameOFCities.get(Integer.parseInt(spl[i])) + ", ");
+//                if(i==0)
+//                System.out.print(spl[i] + " - " + nameOFCities.get(Integer.parseInt(spl[i])) + ", ");
+
+                if(i>0) {
+//                    System.out.print(spl[i-1] + " --> " + spl[i] + " - " + nameOFCities.get(Integer.parseInt(spl[i-1])) + " --> " + nameOFCities.get(Integer.parseInt(spl[i])) + ", ");
+                    examplePathCityFirst.add(nameOFCities.get(Integer.parseInt(spl[i-1])));
+                    examplePathCitySecond.add(nameOFCities.get(Integer.parseInt(spl[i])));
+                    for(Travel t: travels) {
+                        if(t.getCityfirst().equals(nameOFCities.get(Integer.parseInt(spl[i-1]))) && t.getCitysecond().equals(nameOFCities.get(Integer.parseInt(spl[i]))) ) {
+                            sum+=Double.parseDouble(t.getLength());
+                        }
+                    }
+                }
+
             }
 
+//            System.out.println("Wielkosc" + examplePathCityFirst.size());
+            examplePaths.add(new ExamplePath(examplePathCityFirst, examplePathCitySecond, sum));
+
+
+            sum = 0;
+            examplePathCityFirst.clear();
+            examplePathCitySecond.clear();
+        }
+
+        writeExamplePaths();
+
+        //selekcja turniejowa
+        Tournament tournament = new Tournament(examplePaths);
+        tournament.start();
+
+        //selekcja rankingowa
+        Ranked ranked = new Ranked(examplePaths);
+        ranked.start();
+
+    }
+
+    public void writeExamplePaths() {
+        System.out.println();
+        for(ExamplePath ep: examplePaths) {
+
+            System.out.print("Miasta poczatkowe: ");
+            for(String cf: ep.getCityFirst()) {
+                System.out.print(cf + " ");
+            }
+            System.out.println();
+            System.out.print("Miasta docelowe:   ");
+            for(String cs: ep.getCitySecond()) {
+                System.out.print(cs + " ");
+            }
+            System.out.println();
+
+            System.out.println("Suma: " + ep.getSum());
             System.out.println();
         }
     }
-
 }
