@@ -39,89 +39,72 @@ public class Komiwojazer {
 //            System.out.println(p);
 //        }
 
-        //redukcja
+        //redukcja - wybieranie 5 losowych sciezek
         ArrayList<String> combinations = new ArrayList<>();
         Random random = new Random();
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 2; i++) {
             int r = random.nextInt(paths.size());
             combinations.add(paths.get(r));
         }
 
-//        for(String p: combinations) {
-//            System.out.println(p);
-//        }
+        for(String p: combinations) {
+            System.out.println(p);
+        }
 
-        //pobieranie nazw miast
+        //pobieranie wszystkich mozliwych miast
         ArrayList<String> nameOFCities = new ArrayList<>();
         for(int i = 0; i < travels.size(); i+=NUMBER_OF_CITIES) {
             nameOFCities.add(travels.get(i).getCityfirst());
         }
 
-//        for(String noc: nameOFCities) {
-//            System.out.println(noc);
-//        }
 
         //ukladanie sciezek
         ArrayList<String> citiesPaths = new ArrayList<>();
         StringBuilder path = new StringBuilder();
         double sum = 0;
 
-        String firstCity= "";
-        String lastCity = "";
         for(int i = 0; i < combinations.size(); i++) {
 
-            String[] cityValue = combinations.get(i).split(" ");
+            String last = "";
+            for(int j = 0; j < combinations.get(i).split(" ").length; j++) {
+                String[] s = combinations.get(i).split(" ");
+                String first = "0";
 
-            for(int j = 0; j < cityValue.length-1; j++) {
-                String cf = nameOFCities.get(Integer.parseInt(cityValue[j]));
-                String cs = nameOFCities.get(Integer.parseInt(cityValue[j+1]));
+                if(j==0) {
+                    path.append(j + " " + s[j] + " ");
+                    last = s[j];
 
-//                System.out.print(cf  + "--->" + cs + ":");
-                //szukanie odpowiadajacej wartosci
-                for(Travel t: travels) {
-                    if(t.getCityfirst().equals(cf) && t.getCitysecond().equals(cs)) {
-                        if(j == 0 && firstCity.equals("")) {
-                            firstCity = t.getCityfirst();
-                        }
-
-                        if(j == cityValue.length-2 && lastCity.equals("")) {
-                            lastCity = t.getCitysecond();
-                        }
-
-                        path.append(t.getCityfirst()).append("-->").append(t.getCitysecond()).append("\n");
-                        sum+=Double.parseDouble(t.getLength());
-                    }
+                } else if(!last.equals(first)){
+                    path.append(last + " " + s[Integer.parseInt(last) ] + " ");
+                    last = s[Integer.parseInt(last) ];
                 }
-            }
 
-//            System.out.println(firstCity + " " + lastCity);
-
-            //dodanie powrotu
-            for(Travel t: travels) {
-                if(t.getCityfirst().equals(lastCity) && t.getCitysecond().equals(firstCity)) {
-                    path.append(t.getCityfirst()).append("-->").append(t.getCitysecond()).append("\n");
-                    sum+=Double.parseDouble(t.getLength());
-                }
             }
 
 
-            citiesPaths.add(path + String.valueOf(sum));
-            sum = 0;
+            citiesPaths.add(path.toString());
             path.setLength(0);
-            firstCity = "";
-            lastCity = "";
-
         }
 
-        //dodanie wartosci powracajacej do 1 miasta
-//        for(String cp: citiesPaths) {
-//            System.out.println(cp);
-//        }
-
+        System.out.println("Miasta:");
+        for(String noc: nameOFCities) {
+            System.out.print(noc + " ");
+        }
+        System.out.println();
 
         //wypisanie wynikow
         for(String cp: citiesPaths) {
-            System.out.println(cp);
+            System.out.println("============= sciezka =============");
+            String[] spl = cp.split(" ");
+//            for(int i = 0; i < spl.length-1; i+=2) {
+//                System.out.println(spl[i] + " " + spl[i+1]);
+//            }
+
+            for(int i = 0; i < spl.length-1; i+=2) {
+                System.out.println(spl[i] + " " + spl[i+1]);
+                System.out.println(nameOFCities.get(Integer.parseInt(spl[i])) + " " + nameOFCities.get(Integer.parseInt(spl[i+1])));
+            }
+
         }
     }
 

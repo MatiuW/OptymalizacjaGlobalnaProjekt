@@ -80,7 +80,5 @@ public class XmlReader extends DefaultHandler {//JAXP + SAX = https://www.baeldu
     public Travels getWebsite() {
         return travels;
     }
-
-
 }
 
