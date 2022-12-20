@@ -130,12 +130,17 @@ public class Komiwojazer {
 
 
         //selekcja turniejowa
-        Tournament tournament = new Tournament(examplePaths);
-        tournament.start();
+//        Tournament tournament = new Tournament(examplePaths);
+//        tournament.start();
 
         //selekcja rankingowa
-//        Ranked ranked = new Ranked(examplePaths);
-//        ranked.start();
+        Ranked ranked = new Ranked(examplePaths);
+        ArrayList<ExamplePath> rankedSelection = ranked.start();
+
+        System.out.println("Wyniki selekcji rankingowej");
+        for(ExamplePath rS: rankedSelection) {
+            System.out.println(rS.getCityFirst() + " " + rS.getCitySecond() + ":" + rS.getSum());
+        }
 
     }
 
