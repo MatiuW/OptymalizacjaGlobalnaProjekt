@@ -9,5 +9,8 @@ public class Main {
     public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
         Komiwojazer komiwojazer = new Komiwojazer();
         komiwojazer.start();
+
+//        Komiwojazer2 komiwojazer = new Komiwojazer2();
+//        komiwojazer.start();
     }
 }
