@@ -16,7 +16,7 @@ public class Ranked {
     }
 
     public ArrayList<ExamplePath> start() {
-        writeExamplePaths();
+
 
 
         Random random = new Random();
@@ -29,10 +29,6 @@ public class Ranked {
             }
         }
 
-//        System.out.println("Posortowane");
-//        writeExamplePaths();
-
-
         int random1 = 0;
         int random2 = 0;
         for(int i = 0; i < inputData.size(); i++) {
@@ -42,31 +38,11 @@ public class Ranked {
             } else {
                 random2 = 0;
             }
-
-//            System.out.println("wybrano wartosc: " + random2);
             outputData.add(inputData.get(random2));
         }
 
         return outputData;
     }
 
-    public void writeExamplePaths() {
-        System.out.println();
-        for(ExamplePath ep: inputData) {
 
-            System.out.print("Miasta poczatkowe: ");
-            for(String cf: ep.getCityFirst()) {
-                System.out.print(cf + " ");
-            }
-            System.out.println();
-            System.out.print("Miasta docelowe:   ");
-            for(String cs: ep.getCitySecond()) {
-                System.out.print(cs + " ");
-            }
-            System.out.println();
-
-            System.out.println("Suma: " + ep.getSum());
-            System.out.println();
-        }
-    }
 }
