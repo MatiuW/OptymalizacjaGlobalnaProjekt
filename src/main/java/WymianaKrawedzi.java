@@ -104,7 +104,7 @@ public class WymianaKrawedzi {
 
                 if(i%2==0 && i!=0) {//pobranie danych z 1 potomka
 
-                        System.out.println("tu 1: " + helpValue + " " + childFirst.getPath()[helpValue]);
+                        //System.out.println("tu 1: " + helpValue + " " + childFirst.getPath()[helpValue]);
                         //helpValue nie moze byc rowny wartosci w examplePathCityFirst
                         if(checkRepicateValues(examplePathCityFirst[helpValue], childFirst.getPath()[helpValue], examplePathCityFirst)) {
                                 //szuka nowej wartosci do wstawienia ktorej jeszcze nie ma w liscie
@@ -112,7 +112,7 @@ public class WymianaKrawedzi {
                                 helpValue = checkPlaceToSet(examplePathCityFirst);
 
                                 examplePathCityFirst[helpValue] = checkNumberToSet;
-                                System.out.println("w miejsce " + helpValue + " zostala dodana wartosc: " + checkNumberToSet);
+                                //System.out.println("w miejsce " + helpValue + " zostala dodana wartosc: " + checkNumberToSet);
                         } else {
                             examplePathCityFirst[helpValue] = childFirst.getPath()[helpValue];
                             helpValue = childFirst.getPath()[helpValue];
@@ -120,7 +120,7 @@ public class WymianaKrawedzi {
                 }
 
                 if(i%2!=0 && i!=0) {//pobranie danych z 2 potomka
-                        System.out.println("tu2: " + helpValue + " " + childSecond.getPath()[helpValue]);
+                        //System.out.println("tu2: " + helpValue + " " + childSecond.getPath()[helpValue]);
 
                         //sprawdza czy jest skonczony cykl
                     if(checkRepicateValues(examplePathCityFirst[helpValue], childSecond.getPath()[helpValue], examplePathCityFirst)) {
@@ -129,7 +129,7 @@ public class WymianaKrawedzi {
                         helpValue = checkPlaceToSet(examplePathCityFirst);
 
                         examplePathCityFirst[helpValue] = checkNumberToSet;
-                        System.out.println("w miejsce " + helpValue + " zostala dodana wartosc: " + checkNumberToSet);
+                        //System.out.println("w miejsce " + helpValue + " zostala dodana wartosc: " + checkNumberToSet);
 
                     } else {
                         examplePathCityFirst[helpValue] = childSecond.getPath()[helpValue];
@@ -166,7 +166,7 @@ public class WymianaKrawedzi {
 
                 if(i%2==0 && i!=0) {//pobranie danych z 1 potomka
 
-                    System.out.println("tu 1: " + helpValue + " " + childFirst.getPath()[helpValue]);
+                    //System.out.println("tu 1: " + helpValue + " " + childFirst.getPath()[helpValue]);
                     //helpValue nie moze byc rowny wartosci w examplePathCityFirst
                     if(checkRepicateValues(examplePathCityFirst[helpValue], childFirst.getPath()[helpValue], examplePathCityFirst)) {
                         //szuka nowej wartosci do wstawienia ktorej jeszcze nie ma w liscie
@@ -174,7 +174,7 @@ public class WymianaKrawedzi {
                         helpValue = checkPlaceToSet(examplePathCityFirst);
 
                         examplePathCityFirst[helpValue] = checkNumberToSet;
-                        System.out.println("w miejsce " + helpValue + " zostala dodana wartosc: " + checkNumberToSet);
+                        //System.out.println("w miejsce " + helpValue + " zostala dodana wartosc: " + checkNumberToSet);
                     } else {
                         examplePathCityFirst[helpValue] = childFirst.getPath()[helpValue];
                         helpValue = childFirst.getPath()[helpValue];
@@ -182,7 +182,7 @@ public class WymianaKrawedzi {
                 }
 
                 if(i%2!=0 && i!=0) {//pobranie danych z 2 potomka
-                    System.out.println("tu2: " + helpValue + " " + childSecond.getPath()[helpValue]);
+                    //System.out.println("tu2: " + helpValue + " " + childSecond.getPath()[helpValue]);
 
                     //sprawdza czy jest skonczony cykl
                     if(checkRepicateValues(examplePathCityFirst[helpValue], childSecond.getPath()[helpValue], examplePathCityFirst)) {
@@ -191,7 +191,7 @@ public class WymianaKrawedzi {
                         helpValue = checkPlaceToSet(examplePathCityFirst);
 
                         examplePathCityFirst[helpValue] = checkNumberToSet;
-                        System.out.println("w miejsce " + helpValue + " zostala dodana wartosc: " + checkNumberToSet);
+                        //System.out.println("w miejsce " + helpValue + " zostala dodana wartosc: " + checkNumberToSet);
 
                     } else {
                         examplePathCityFirst[helpValue] = childSecond.getPath()[helpValue];
@@ -212,13 +212,16 @@ public class WymianaKrawedzi {
 
     public boolean check(ArrayList<String> pars, int valueFirst, int valueSecond) {
 
+        if(valueSecond == valueFirst) {
+            return true;
+        }
+
         for(String p: pars) {
             String[] c = p.split(" ");
 
             //warunek ktory nie moze sie spelnic
             if(Integer.parseInt(c[0]) == valueFirst || Integer.parseInt(c[1]) == valueFirst ||
-                    Integer.parseInt(c[0]) == valueSecond || Integer.parseInt(c[1]) == valueSecond ||
-                    valueSecond == valueFirst) {
+                    Integer.parseInt(c[0]) == valueSecond || Integer.parseInt(c[1]) == valueSecond ) {
                 return true;
             }
 
