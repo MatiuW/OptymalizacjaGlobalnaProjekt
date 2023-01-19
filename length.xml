@@ -30,7 +30,7 @@
     <travel>
         <cityfirst>warszawa</cityfirst>
         <citysecond>bialystok</citysecond>
-        <length>198.9</length>-->
+        <length>198.6</length>-->
     </travel>
     <travel>
         <cityfirst>warszawa</cityfirst>
@@ -56,12 +56,12 @@
     <travel>
         <cityfirst>krakow</cityfirst>
         <citysecond>bialystok</citysecond>
-        <length>485.2</length>
+        <length>484.5</length>
     </travel>
     <travel>
         <cityfirst>krakow</cityfirst>
         <citysecond>warszawa</citysecond>
-        <length>290.4</length>
+        <length>290</length>
     </travel>
     <travel>
         <cityfirst>krakow</cityfirst>
@@ -82,7 +82,7 @@
     <travel>-->
         <cityfirst>wroclaw</cityfirst>
         <citysecond>bialystok</citysecond>
-        <length>535.7</length>
+        <length>543.1</length>
     </travel>
     <travel>
         <cityfirst>wroclaw</cityfirst>
@@ -92,7 +92,7 @@
     <travel>
         <cityfirst>wroclaw</cityfirst>
         <citysecond>krakow</citysecond>
-        <length>272</length>
+        <length>271.4</length>
     </travel>
     <travel>
         <cityfirst>wroclaw</cityfirst>
@@ -108,22 +108,22 @@
     <travel>
         <cityfirst>lodz</cityfirst>
         <citysecond>bialystok</citysecond>
-        <length>327.4</length>
+        <length>324.7</length>
     </travel>
     <travel>
         <cityfirst>lodz</cityfirst>
         <citysecond>warszawa</citysecond>
-        <length>139.5</length>
+        <length>136.4</length>
     </travel>
     <travel>
         <cityfirst>lodz</cityfirst>
         <citysecond>krakow</citysecond>
-        <length>301.4</length>
+        <length>280.5</length>
     </travel>
     <travel>
         <cityfirst>lodz</cityfirst>
         <citysecond>wroclaw</citysecond>
-        <length>220.8</length>
+        <length>215</length>
     </travel>
     <travel>
         <cityfirst>lodz</cityfirst>
@@ -134,7 +134,7 @@
     <travel>
         <cityfirst>poznan</cityfirst>
         <citysecond>bialystok</citysecond>
-        <length>499.2</length>
+        <length>500</length>
     </travel>
     <travel>
         <cityfirst>poznan</cityfirst>
@@ -144,16 +144,16 @@
     <travel>
         <cityfirst>poznan</cityfirst>
         <citysecond>krakow</citysecond>
-        <length>460.7</length>
+        <length>458.4</length>
     </travel>
     <travel>
         <cityfirst>poznan</cityfirst>
         <citysecond>wroclaw</citysecond>
-        <length>183.1</length>
+        <length>181.9</length>
     </travel>
     <travel>
         <cityfirst>poznan</cityfirst>
         <citysecond>lodz</citysecond>
-        <length>78.1</length>
+        <length>206.8</length>
     </travel>
 </travels>
