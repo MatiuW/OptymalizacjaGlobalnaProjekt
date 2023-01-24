@@ -1,4 +1,5 @@
 import model.ExamplePath;
+import model.SuccessionType;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,13 +12,15 @@ public class Mutation {
     //http://www.imio.polsl.pl/Dopobrania/Lab%20ITK%2006%20(TSP).pdf
 
     private static final int n = 6;
-    private static final double Pm = 0.1;
+    private static final double Pm = 0.5;
 
     private ArrayList<ExamplePath> inputData = new ArrayList<>();
     private ArrayList<ExamplePath> outputData = new ArrayList<>();
+    private SuccessionType successionType;
 
-    public Mutation(ArrayList<ExamplePath> examplePaths) {
+    public Mutation(ArrayList<ExamplePath> examplePaths, SuccessionType successionType) {
         this.inputData = examplePaths;
+        this.successionType = successionType;
     }
 
     public ArrayList<ExamplePath> start() {
@@ -51,14 +54,16 @@ public class Mutation {
                     }
                 }
 
+                outputData.add(new ExamplePath(help, 0));
 
-            } else {
+            } else if(successionType.equals(SuccessionType.TRIVIAL)){
                 for(int i = 0; i<iD.getPath().length; i++) {
                     help[i] = iD.getPath()[i];
                 }
+                outputData.add(new ExamplePath(help, 0));
             }
 
-            outputData.add(new ExamplePath(help, 0));
+
         }
 
         //zamiana na przyleglosciowa

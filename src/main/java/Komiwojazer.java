@@ -99,7 +99,6 @@ public class Komiwojazer {
             }
 
             paths.get(i).setSum(sum);
-            sum = 0;
         }
 
         return paths;

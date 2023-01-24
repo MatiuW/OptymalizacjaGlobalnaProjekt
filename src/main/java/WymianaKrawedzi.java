@@ -1,4 +1,5 @@
 import model.ExamplePath;
+import model.SuccessionType;
 
 import java.util.*;
 
@@ -6,13 +7,15 @@ public class WymianaKrawedzi {
 
     private ArrayList<ExamplePath> inputData = new ArrayList<>();
     private ArrayList<ExamplePath> outputData = new ArrayList<>();
+    private SuccessionType successionType;
 
     private static final int n = 6;
 
     private static final double Pk = 0.1;
 
-    public WymianaKrawedzi(ArrayList<ExamplePath> examplePaths) {
+    public WymianaKrawedzi(ArrayList<ExamplePath> examplePaths, SuccessionType successionType) {
         this.inputData = examplePaths;
+        this.successionType = successionType;
     }
 
     public ArrayList<ExamplePath> start() {
@@ -68,19 +71,22 @@ public class WymianaKrawedzi {
         }
 
         //dodanie pozostałych rodzicow do listy
-        ArrayList<Integer> allPars = new ArrayList<>();
-        for(String p: pars) {
-            String[] values = p.split(" ");
-            allPars.add(Integer.parseInt(values[0]));
-            allPars.add(Integer.parseInt(values[1]));
-        }
+        if(successionType.equals(SuccessionType.TRIVIAL)) {
+            ArrayList<Integer> allPars = new ArrayList<>();
+            for(String p: pars) {
+                String[] values = p.split(" ");
+                allPars.add(Integer.parseInt(values[0]));
+                allPars.add(Integer.parseInt(values[1]));
+            }
 
-        for(int i = 0 ; i < inputData.size(); i++) {
-            if(!allPars.contains(i)) {
+            for(int i = 0 ; i < inputData.size(); i++) {
+                if(!allPars.contains(i)) {
 //                System.out.println("nie ma: " + i);
-                outputData.add(inputData.get(i));
+                    outputData.add(inputData.get(i));
+                }
             }
         }
+
 
         //tworzenie potomkow dla kazdej pary
 
