@@ -2,6 +2,7 @@ import model.ExamplePath;
 import model.SuccessionType;
 import model.Travel;
 import selection.Ranked;
+import selection.Tournament;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class Elite {
     private ArrayList<ExamplePath> inputData = new ArrayList<>();
-    private static final int NUMBER_OF_GENERATIONS = 5;
+    private static final int NUMBER_OF_GENERATIONS = 100;
     private List<Travel> travels;
 
     private ArrayList<ExamplePath> rankedSelectionResult;
@@ -35,6 +36,12 @@ public class Elite {
 
             System.out.println("Wyniki selekcji:");
             writeResults(rankedSelectionResult);
+
+//            Tournament tournament = new Tournament(paths);
+//            ArrayList<ExamplePath> tournamentSelectionResult = tournament.start();
+//
+//            System.out.println("Wyniki po selekcji turniejowej:");
+//            writeResults(tournamentSelectionResult);
 
             //---------------------------------------------------------------------------------------------------------
             //mutacja...
@@ -78,7 +85,7 @@ public class Elite {
 
             for (int j = 0; j < elitarna.size(); j++){
                 for (int k = 1; k < elitarna.size() - j; k++) {
-                    if(elitarna.get(k-1).getSum() < elitarna.get(k).getSum()) {
+                    if(elitarna.get(k-1).getSum() > elitarna.get(k).getSum()) {
                         Collections.swap(elitarna, k-1, k);
                     }
                 }

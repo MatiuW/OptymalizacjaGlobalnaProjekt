@@ -12,7 +12,7 @@ public class Mutation {
     //http://www.imio.polsl.pl/Dopobrania/Lab%20ITK%2006%20(TSP).pdf
 
     private static final int n = 6;
-    private static final double Pm = 0.5;
+    private static final double Pm = 0.05;
 
     private ArrayList<ExamplePath> inputData = new ArrayList<>();
     private ArrayList<ExamplePath> outputData = new ArrayList<>();
@@ -26,6 +26,7 @@ public class Mutation {
     public ArrayList<ExamplePath> start() {
         Random random = new Random();
 
+        int h = 0;
         for(ExamplePath iD: inputData) {
 
             int firstValue, secondValue;
@@ -39,7 +40,8 @@ public class Mutation {
                     secondValue = random.nextInt(n);
                 }while(secondValue == firstValue);
 
-//                System.out.println("Pierwsza wartosc: " + firstValue + " druga wartosc: " + secondValue);
+                System.out.println("Pierwsza wartosc: " + firstValue + " druga wartosc: " + secondValue +
+                        "dla h = " + h);
 
                 for(int i = 0; i<iD.getPath().length; i++) {
                     if(i == secondValue) {

@@ -2,6 +2,7 @@ import model.ExamplePath;
 import model.SuccessionType;
 import model.Travel;
 import selection.Ranked;
+import selection.Tournament;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +25,19 @@ public class Trivial {
             System.out.println("Dane wejsciowe:");
             writeResults(inputData);
             //---------------------------------------------------------------------------------------------------------
-            //selekcja - turniejowa, rankingowa, ruletka
+            //selekcja - rankingowa,
             Ranked ranked = new Ranked(inputData);
             ArrayList<ExamplePath> rankedSelectionResult = ranked.start();//dane z selekcji
 
             System.out.println("Wyniki po selekcji:");
             writeResults(rankedSelectionResult);
+
+            //turniejowa
+//            Tournament tournament = new Tournament(inputData);
+//            ArrayList<ExamplePath> tournamentSelectionResult = tournament.start();
+//
+//            System.out.println("Wyniki po selekcji turniejowej:");
+//            writeResults(tournamentSelectionResult);
 
             //---------------------------------------------------------------------------------------------------------
             //mutacja...

@@ -11,7 +11,7 @@ public class WymianaKrawedzi {
 
     private static final int n = 6;
 
-    private static final double Pk = 0.1;
+    private static final double Pk = 0.2;
 
     public WymianaKrawedzi(ArrayList<ExamplePath> examplePaths, SuccessionType successionType) {
         this.inputData = examplePaths;

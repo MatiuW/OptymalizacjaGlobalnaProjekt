@@ -21,9 +21,10 @@ public class Ranked {
 
         Random random = new Random();
 
+        //sortowanie
         for(int i = 0; i < inputData.size(); i++) {
             for(int j = 1; j < inputData.size()- i; j++) {
-                if(inputData.get(j - 1).getSum() < inputData.get(j).getSum()) {
+                if(inputData.get(j - 1).getSum() > inputData.get(j).getSum()) {
                     Collections.swap(inputData, j - 1, j);
                 }
             }
