@@ -14,7 +14,7 @@ public class Elite {
     private static final int NUMBER_OF_GENERATIONS = 100;
     private List<Travel> travels;
 
-    private ArrayList<ExamplePath> rankedSelectionResult;
+    private ArrayList<ExamplePath> selectionResult;
     private ArrayList<ExamplePath> mutationResults;
     private ArrayList<ExamplePath> edgeReplacementResults;
 
@@ -23,7 +23,7 @@ public class Elite {
         this.inputData = examplePaths;
     }
 
-    public void startSuccession() {
+    public WriteResults startSuccession() {
         System.out.println("Sukcesja elitarna");
         for(int i = 0 ; i < NUMBER_OF_GENERATIONS; i++) {
             System.out.println("Pokolenie nr: " + i);
@@ -31,21 +31,21 @@ public class Elite {
             writeResults(inputData);
             //---------------------------------------------------------------------------------------------------------
             //selekcja - turniejowa, rankingowa, ruletka
-            Ranked ranked = new Ranked(inputData);
-            rankedSelectionResult = ranked.start();//dane z selekcji
-
-            System.out.println("Wyniki selekcji:");
-            writeResults(rankedSelectionResult);
-
-//            Tournament tournament = new Tournament(paths);
-//            ArrayList<ExamplePath> tournamentSelectionResult = tournament.start();
+//            Ranked ranked = new Ranked(inputData);
+//            rankedSelectionResult = ranked.start();//dane z selekcji
 //
-//            System.out.println("Wyniki po selekcji turniejowej:");
-//            writeResults(tournamentSelectionResult);
+//            System.out.println("Wyniki selekcji:");
+//            writeResults(rankedSelectionResult);
+
+            Tournament tournament = new Tournament(inputData);
+            ArrayList<ExamplePath> selectionResult = tournament.start();
+
+            System.out.println("Wyniki po selekcji turniejowej:");
+            writeResults(selectionResult);
 
             //---------------------------------------------------------------------------------------------------------
             //mutacja...
-            Mutation mutation = new Mutation(rankedSelectionResult, SuccessionType.ELITE);
+            Mutation mutation = new Mutation(selectionResult, SuccessionType.ELITE);
             ArrayList<ExamplePath> mutationResults = mutation.start();
             new Komiwojazer().countValues(mutationResults, travels);
 
@@ -58,7 +58,7 @@ public class Elite {
             //---------------------------------------------------------------------------------------------------------
             //krzyzowanie - z wymiana krawedzi/ z wydzielaniem podtras/ heurystyczne...
 
-            WymianaKrawedzi wymianaKrawedzi = new WymianaKrawedzi(rankedSelectionResult, SuccessionType.ELITE);
+            WymianaKrawedzi wymianaKrawedzi = new WymianaKrawedzi(selectionResult, SuccessionType.ELITE);
             ArrayList<ExamplePath> edgeReplacementResults = wymianaKrawedzi.start();
             new Komiwojazer().countValues(edgeReplacementResults, travels);
 
@@ -98,6 +98,28 @@ public class Elite {
 
         System.out.println("Wyniki ostateczne:");
         writeResults(inputData);
+
+        //input data save to file
+        return zapisSredniejDoPliku(inputData);
+    }
+
+    public WriteResults zapisSredniejDoPliku(ArrayList<ExamplePath> daneWejsciowe)  {
+        double min = daneWejsciowe.get(0).getSum(), max = daneWejsciowe.get(0).getSum(), srednia;
+        double sum = 0;
+        for (ExamplePath dw : daneWejsciowe) {
+            if(dw.getSum() < min) {
+                min = dw.getSum();
+            }
+
+            if(dw.getSum() > max) {
+                max = dw.getSum();
+            }
+            sum += dw.getSum();
+        }
+        srednia = sum/daneWejsciowe.size();
+
+
+        return new WriteResults(min, max, srednia);
     }
 
     public static void writeResults(ArrayList<ExamplePath> paths){

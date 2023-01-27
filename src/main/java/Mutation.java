@@ -12,7 +12,7 @@ public class Mutation {
     //http://www.imio.polsl.pl/Dopobrania/Lab%20ITK%2006%20(TSP).pdf
 
     private static final int n = 6;
-    private static final double Pm = 0.05;
+    private static final double Pm = 0.1;
 
     private ArrayList<ExamplePath> inputData = new ArrayList<>();
     private ArrayList<ExamplePath> outputData = new ArrayList<>();
